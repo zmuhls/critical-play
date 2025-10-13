@@ -131,12 +131,6 @@ function initDominoViz() {
             drawDomino(domino.x, domino.y, domino.angle, fallen, fallProgress);
         });
 
-        // Label
-        ctx.fillStyle = '#42affa';
-        ctx.font = 'bold 14px sans-serif';
-        ctx.textAlign = 'left';
-        ctx.fillText('Constraint cascade effect', 20, 25);
-
         animationId = requestAnimationFrame(draw);
     }
 
