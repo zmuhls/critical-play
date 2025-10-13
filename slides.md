@@ -2,8 +2,6 @@
 
 This document provides an easy reference for editing slide content. Each section corresponds to slides in the presentation.
 
-**Workshop Audience:** Graduate students, instructors, etc.
-
 ---
 
 ## Slide 1: Title
@@ -209,36 +207,3 @@ Link: https://openwebui.cuny.qzz.io/
 - r/ChatGPT community discussions on playful AI interactions
 
 ---
-
-## Summary of Changes
-
-### Timing Display:
-- Only visible on slides with LONG activities (10+ minutes)
-- Hidden on all intro, demo, playful sections
-- Visible only on: Quick Demo (10 min), Worksheet (5 min), Critical Design Activity (15 min), Shareback (15 min)
-
-### Vertical Navigation:
-- Jeopardy examples (slides 3-6): Use down arrow to see all three examples
-- Critical Design Activity (slides 12-18): Use down arrow to navigate through each design step
-
-### Better Space Usage:
-- Removed all 3-min individual timings
-- Consolidated related content onto single slides
-- Combined "Demo Steps" into the "Choose a Game Format" slide
-- Merged "Debrief Discussion" and "Discussion Prompt" into one slide
-- Removed all [Space for participant input] placeholders
-- Combined shareback and playtest into one slide
-
-### Section Background Colors:
-- **section-intro**: Dark blue-grey (welcome, introductions)
-- **section-demo**: Purple-grey (Jeopardy, quick demo)
-- **section-playful**: Blue-grey (Mary Flanagan, playful interactions)
-- **section-worksheet**: Purple (worksheets, choose format)
-- **section-activity**: Darker purple (critical design activity)
-- **section-playtest**: Teal-grey (shareback, playtest, Q&A)
-
-### Text Formatting:
-- All content is flush left
-- Regular sentence case for all titles
-- Use `class="small"` for smaller text
-- Use `<strong>` for bold text
