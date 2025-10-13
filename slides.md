@@ -158,11 +158,11 @@ What do you want to reveal about AI abilities/limitations?
 
 **Slide 15 - System Prompt:**
 Configure the AI's behavior and constraints
-Example: "You are playing 20 Questions. Think of a famous person and I will try to guess who it is. You must only answer with 'yes,' 'no,' or 'I don't know.' Do not provide hints or explanations."
+Example: "You are playing 20 Questions. I'm thinking of a famous person. Ask me yes/no questions to guess who it is. Every question you ask must rhyme with your previous question. Do not provide explanations or commentary."
 
 **Slide 16 - User Prompt:**
 Your first message to start the game
-Example: "I'm ready. Have you thought of someone? I'll start: Is this person alive today?"
+Example: "I've thought of someone. Go ahead and ask your first question!"
 
 **Slide 17 - Optional Settings (Advanced):**
 - **Temperature:** ☐ 0 (very deterministic) through 1.5 (more creative)
