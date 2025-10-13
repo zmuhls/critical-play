@@ -1,4 +1,4 @@
-// Simple Domino Chain - Left to right cascade
+// Causation Chain Reaction - Ripple cascade effect
 function initDominoViz() {
     const canvas = document.getElementById('dominoCanvas');
     if (!canvas) return;
@@ -17,50 +17,79 @@ function initDominoViz() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         const elapsed = (Date.now() - startTime) / 1000;
-        const cycleDuration = 5;
+        const cycleDuration = 6;
         const progress = (elapsed % (cycleDuration + 1)) / cycleDuration;
 
-        const numDominos = 20;
-        const spacing = Math.min(60, canvas.width / (numDominos + 2));
-        const startX = 40;
-        const baseY = canvas.height / 2 + 20;
-        const fallenCount = Math.floor(progress * numDominos);
+        const centerY = canvas.height / 2;
+        const numNodes = 8;
+        const spacing = canvas.width / (numNodes + 1);
 
-        for (let i = 0; i < numDominos; i++) {
-            const x = startX + i * spacing;
-            const fallen = i < fallenCount;
-            const isFalling = i === fallenCount - 1;
+        for (let i = 0; i < numNodes; i++) {
+            const x = spacing * (i + 1);
+            const nodeProgress = Math.max(0, Math.min(1, (progress - i * 0.12) * 3));
 
-            ctx.save();
+            if (nodeProgress > 0) {
+                // Expanding ripple
+                const maxRadius = 60;
+                const rippleRadius = nodeProgress * maxRadius;
+                const rippleAlpha = 1 - nodeProgress;
 
-            if (fallen) {
-                // Rotate around bottom corner so it falls forward to the right (clockwise)
-                const fallAngle = isFalling ?
-                    ((progress * numDominos - i) * Math.PI / 2) :
-                    (Math.PI / 2);
-                // Pivot at bottom-left corner (x-10, baseY+30)
-                ctx.translate(x - 10, baseY + 30);
-                ctx.rotate(fallAngle);
-                ctx.translate(0, -60);
+                // Outer ripple
+                ctx.strokeStyle = `rgba(66, 175, 250, ${rippleAlpha * 0.6})`;
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.arc(x, centerY, rippleRadius, 0, Math.PI * 2);
+                ctx.stroke();
+
+                // Inner ripple
+                if (nodeProgress > 0.3) {
+                    const innerProgress = (nodeProgress - 0.3) / 0.7;
+                    const innerRadius = innerProgress * maxRadius * 0.7;
+                    ctx.strokeStyle = `rgba(78, 205, 196, ${(1 - innerProgress) * 0.4})`;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(x, centerY, innerRadius, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                // Center node (activated)
+                const nodeSize = 8 + nodeProgress * 4;
+                ctx.fillStyle = nodeProgress < 1 ? '#42affa' : '#4ecdc4';
+                ctx.beginPath();
+                ctx.arc(x, centerY, nodeSize, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Connection arrow to next node
+                if (i < numNodes - 1 && nodeProgress > 0.5) {
+                    const arrowProgress = (nodeProgress - 0.5) * 2;
+                    const nextX = spacing * (i + 2);
+                    const currentX = x + arrowProgress * (nextX - x);
+
+                    ctx.strokeStyle = `rgba(255, 107, 107, ${arrowProgress * 0.8})`;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(x, centerY);
+                    ctx.lineTo(currentX, centerY);
+                    ctx.stroke();
+
+                    // Arrow head
+                    if (arrowProgress > 0.8) {
+                        ctx.fillStyle = '#ff6b6b';
+                        ctx.beginPath();
+                        ctx.moveTo(currentX, centerY);
+                        ctx.lineTo(currentX - 8, centerY - 5);
+                        ctx.lineTo(currentX - 8, centerY + 5);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                }
             } else {
-                ctx.translate(x, baseY);
+                // Inactive node
+                ctx.fillStyle = '#333';
+                ctx.beginPath();
+                ctx.arc(x, centerY, 6, 0, Math.PI * 2);
+                ctx.fill();
             }
-
-            // Draw domino
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(-10, -30, 20, 60);
-            ctx.strokeStyle = '#333';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(-10, -30, 20, 60);
-
-            // Dots
-            ctx.fillStyle = '#000';
-            ctx.beginPath();
-            ctx.arc(0, -12, 3, 0, Math.PI * 2);
-            ctx.arc(0, 12, 3, 0, Math.PI * 2);
-            ctx.fill();
-
-            ctx.restore();
         }
 
         animationId = requestAnimationFrame(draw);
