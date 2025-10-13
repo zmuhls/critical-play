@@ -157,19 +157,24 @@ Leverage 2-3 types of playful interactions
 What do you want to reveal about AI abilities/limitations?
 
 **Slide 15 - System Prompt:**
-Set the stage and define AI's role/constraints
+Configure the AI's behavior and constraints
+Example: "You are playing 20 Questions. Think of a famous person and I will try to guess who it is. You must only answer with 'yes,' 'no,' or 'I don't know.' Do not provide hints or explanations."
 
-**Slide 16 - Starter Prompts:**
-Initial prompts players would use to begin the game
+**Slide 16 - User Prompt:**
+Your first message to start the game
+Example: "I'm ready. Have you thought of someone? I'll start: Is this person alive today?"
 
 **Slide 17 - Optional Settings (Advanced):**
 - **Temperature:** ☐ 0 (very deterministic) through 1.5 (more creative)
 - **Max output:** 50-1000 Tokens (equivalent to ¾ of one word)
 
 **Slide 18 - Expected Outcomes:**
+- What do you want to reveal about AI abilities/limitations?
 - What do you predict will happen?
 - What failure modes might emerge?
 - How will game mechanics make limitations visible?
+
+**Visualization:** Ripple causation chain reaction - shows nodes activating in sequence with expanding blue ripples and red arrows connecting them, representing how one constraint triggers the next
 
 ---
 
