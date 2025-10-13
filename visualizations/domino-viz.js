@@ -12,46 +12,61 @@ function initDominoViz() {
         canvas.height = 300;
     }
 
-    // Create elaborate domino path (left to right, curves, etc)
-    const dominoPath = [];
-    const w = canvas.offsetWidth;
-    const h = 300;
+    // Create elaborate domino path
+    function createDominoPath() {
+        const path = [];
+        const h = canvas.height;
+        const spacing = 35;
 
-    // Segment 1: Left to right across bottom
-    for (let i = 0; i < 12; i++) {
-        dominoPath.push({
-            x: 50 + i * 45,
-            y: h - 60,
-            angle: 0
-        });
+        // Segment 1: Left to right across bottom
+        for (let i = 0; i < 15; i++) {
+            path.push({
+                x: 40 + i * spacing,
+                y: h - 80,
+                angle: 0
+            });
+        }
+
+        // Segment 2: Curve up right side (smooth arc)
+        const cornerX = 40 + 14 * spacing;
+        const cornerStartY = h - 80;
+        for (let i = 1; i <= 8; i++) {
+            const progress = i / 8;
+            const angle = progress * Math.PI / 2;
+            path.push({
+                x: cornerX + Math.sin(angle) * 60,
+                y: cornerStartY - progress * 140,
+                angle: -angle * 0.5
+            });
+        }
+
+        // Segment 3: Right to left across top
+        const topStartX = cornerX + 60;
+        const topY = cornerStartY - 140;
+        for (let i = 1; i < 15; i++) {
+            path.push({
+                x: topStartX - i * spacing,
+                y: topY,
+                angle: 0
+            });
+        }
+
+        // Segment 4: Curve down left side
+        const leftCornerX = topStartX - 14 * spacing;
+        for (let i = 1; i <= 5; i++) {
+            const progress = i / 5;
+            const angle = progress * Math.PI / 2;
+            path.push({
+                x: leftCornerX - Math.sin(angle) * 50,
+                y: topY + progress * 100,
+                angle: angle * 0.5
+            });
+        }
+
+        return path;
     }
 
-    // Segment 2: Curve up the right side
-    for (let i = 0; i < 6; i++) {
-        dominoPath.push({
-            x: 50 + 11 * 45 + Math.cos(i * 0.3) * 30,
-            y: h - 60 - i * 35,
-            angle: -i * 0.15
-        });
-    }
-
-    // Segment 3: Right to left across top
-    for (let i = 0; i < 10; i++) {
-        dominoPath.push({
-            x: w - 100 - i * 45,
-            y: 80,
-            angle: 0
-        });
-    }
-
-    // Segment 4: Curve down to center
-    for (let i = 0; i < 5; i++) {
-        dominoPath.push({
-            x: w - 100 - 10 * 45 - i * 40,
-            y: 80 + i * 30,
-            angle: i * 0.2
-        });
-    }
+    const dominoPath = createDominoPath();
 
     function drawDomino(x, y, angle, fallen, fallProgress) {
         ctx.save();
