@@ -32,24 +32,29 @@ function initDominoViz() {
             const isFalling = i === fallenCount - 1;
 
             ctx.save();
-            ctx.translate(x, baseY);
 
             if (fallen) {
+                // Rotate around bottom corner so it falls forward to the right (clockwise)
                 const fallAngle = isFalling ?
                     ((progress * numDominos - i) * Math.PI / 2) :
                     (Math.PI / 2);
+                // Pivot at bottom-left corner (x-10, baseY+30)
+                ctx.translate(x - 10, baseY + 30);
                 ctx.rotate(fallAngle);
+                ctx.translate(0, -60);
+            } else {
+                ctx.translate(x, baseY);
             }
 
             // Draw domino
-            ctx.fillStyle = fallen ? '#ff6b6b' : '#42affa';
+            ctx.fillStyle = '#fff';
             ctx.fillRect(-10, -30, 20, 60);
-            ctx.strokeStyle = '#fff';
+            ctx.strokeStyle = '#333';
             ctx.lineWidth = 2;
             ctx.strokeRect(-10, -30, 20, 60);
 
             // Dots
-            ctx.fillStyle = '#fff';
+            ctx.fillStyle = '#000';
             ctx.beginPath();
             ctx.arc(0, -12, 3, 0, Math.PI * 2);
             ctx.arc(0, 12, 3, 0, Math.PI * 2);
