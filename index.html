@@ -320,7 +320,8 @@
             <section class="section-demo">
                 <h2>Quick demo session</h2>
                 <div class="timing">10 min</div>
-                <p>Live demonstration: Word association game constrained by system prompts that deliberately limit associative reasoning patterns, exposing the model's underlying semantic structures and revealing unexpected absurdities in its response patterns.</p>
+                <p>Live demonstration: Exquisite Corpse word game where the AI must respond with one word per turn, avoiding predictable or common words, never repeating syllable counts. After twenty turns, it assembles all words into a brief poem with enjambment and spacing.</p>
+                <p class="small" style="margin-top: 15px; font-style: italic; color: #aaa;">System prompt: "We're playing Exquisite Corpse. I'll start; you respond with one word per turn. No punctuation, no commentary. Avoid predictable or common words when continuing the sequence. Never repeat the same word or syllable count. After twenty turns, assemble our words into a brief poem using only what we've written. Add enjambment and spacing where needed to form a cohesive poem."</p>
                 <p><a href="https://openwebui.cuny.qzz.io/" target="_blank">https://openwebui.cuny.qzz.io/</a></p>
                 <canvas id="vectorCanvas" style="width: 100%; height: 300px; margin-top: 20px;"></canvas>
             </section>
@@ -355,31 +356,23 @@
                 <section class="section-activity">
                     <h2>Target AI limitations</h2>
                     <p class="small">Select which AI weakness(es) you want to expose:</p>
-                    <div class="two-column">
-                        <ul class="checkbox-list">
-                            <li>Hallucination/confabulation</li>
-                            <li>Logic inconsistency/reasoning failures</li>
-                            <li>Context window limitations</li>
-                            <li>Bias/stereotypes/harmful associations</li>
-                            <li>Sycophancy (excessive agreement)</li>
-                            <li>Instruction following failures</li>
-                        </ul>
-                        <ul class="checkbox-list">
-                            <li>Calibration issues (false confidence)</li>
-                            <li>Knowledge cutoff/temporal awareness</li>
-                            <li>Lack of theory of mind</li>
-                            <li>Safety guardrail bypasses</li>
-                            <li>Other: _______</li>
-                        </ul>
-                    </div>
+                    <ul class="checkbox-list">
+                        <li>Hallucination/confabulation</li>
+                        <li>Logic inconsistency/reasoning failures</li>
+                        <li>Sycophancy (excessive agreement)</li>
+                        <li>Instruction following failures</li>
+                        <li>Knowledge cutoff/temporal awareness</li>
+                        <li>Other: _______</li>
+                    </ul>
+                    <p class="small" style="margin-top: 20px;"><strong>Example: Sycophancy</strong> — Play "Two Truths and a Lie" but mark the truth as the "lie." AI often agrees rather than challenges incorrect assumptions.</p>
                 </section>
 
                 <section class="section-activity">
                     <h2>Craft your prompts</h2>
                     <p class="small"><strong>System prompt:</strong> Configure the AI's behavior and constraints</p>
-                    <p class="small" style="margin-left: 40px; font-style: italic; color: #aaa;">Example: "You are playing 20 Questions. I'm thinking of a famous person. Ask me yes/no questions to guess who it is. Every question you ask must rhyme with your previous question. Do not provide explanations or commentary."</p>
+                    <p class="small" style="margin-left: 40px; font-style: italic; color: #aaa;">Example: "You are playing word association. When I say a word, respond with the statistically least common association. Each response must incorporate elements from all previous words in the chain. Avoid obvious connections. Reply with only the associated word or short phrase, no explanations."</p>
                     <p class="small"><strong>User prompt:</strong> Your first message to start the game</p>
-                    <p class="small" style="margin-left: 40px; font-style: italic; color: #aaa;">Example: "I've thought of someone. Go ahead and ask your first question!"</p>
+                    <p class="small" style="margin-left: 40px; font-style: italic; color: #aaa;">Example: "Dog"</p>
                     <p class="small"><strong>Optional settings:</strong></p>
                     <ul class="small">
                         <li><strong>Temperature:</strong> Higher = more creative/random (0.0-1.5)</li>
@@ -399,14 +392,15 @@
             <section class="section-playtest">
                 <h2>Shareback and playtest</h2>
                 <div class="timing">15 min</div>
-                <p>Present your game design:</p>
-                <ul>
-                    <li>System prompt</li>
-                    <li>Starter prompt(s)</li>
-                    <li>Optional settings</li>
-                    <li>Expected outcomes</li>
+                <p class="small">Navigate to the Open WebUI demo site and optionally sign up: <a href="https://openwebui.cuny.qzz.io/" target="_blank">https://openwebui.cuny.qzz.io/</a></p>
+                <p class="small">Test your game design:</p>
+                <ul class="small">
+                    <li>Click the configuration icon to open the settings panel</li>
+                    <li>Input your system prompt in the "System Prompt" field</li>
+                    <li>Adjust optional settings (temperature, max tokens) if desired</li>
+                    <li>Begin with your conversation starter in the main chat</li>
                 </ul>
-                <p><a href="https://openwebui.cuny.qzz.io/" target="_blank">https://openwebui.cuny.qzz.io/</a></p>
+                <p class="small">Share what you discover about the AI's limitations</p>
             </section>
 
             <!-- Resources and Q&A -->
