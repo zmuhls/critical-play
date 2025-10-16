@@ -255,9 +255,10 @@
             <!-- Critical Play with Mary Flanagan -->
             <section class="section-playful">
                 <h2>Critical play with Mary Flanagan</h2>
-                <p>Traditional iterative game design model</p>
+                <p>Mary Flanagan's "critical play" uses game design to challenge conventions and reveal hidden systems. We apply this iterative design model to expose AI limitations through playful constraints.</p>
+                <p class="small">Traditional iterative game design model:</p>
                 <div style="display: flex; align-items: flex-start; gap: 40px; margin-top: 20px;">
-                    <img src="img/design-model.png" alt="Iterative game design model" style="max-height: 500px; flex-shrink: 0;">
+                    <img src="img/design-model.png" alt="Iterative game design model" style="max-height: 350px; flex-shrink: 0;">
                     <ul>
                         <li>Set a design goal</li>
                         <li>Develop rules</li>
@@ -318,12 +319,19 @@
 
             <!-- Quick Demo Session -->
             <section class="section-demo">
-                <h2>Quick demo session</h2>
-                <div class="timing">10 min</div>
-                <p>Live demonstration: Exquisite Corpse word game where the AI must respond with one word per turn, avoiding predictable or common words, never repeating syllable counts. After twenty turns, it assembles all words into a brief poem with enjambment and spacing.</p>
-                <p class="small" style="margin-top: 15px; font-style: italic; color: #aaa;">System prompt: "We're playing Exquisite Corpse. I'll start; you respond with one word per turn. No punctuation, no commentary. Avoid predictable or common words when continuing the sequence. Never repeat the same word or syllable count. After twenty turns, assemble our words into a brief poem using only what we've written. Add enjambment and spacing where needed to form a cohesive poem."</p>
-                <p><a href="https://openwebui.cuny.qzz.io/" target="_blank">https://openwebui.cuny.qzz.io/</a></p>
-                <canvas id="vectorCanvas" style="width: 100%; height: 300px; margin-top: 20px;"></canvas>
+                <section>
+                    <h2>Quick demo session</h2>
+                    <div class="timing">10 min</div>
+                    <p>LLMs generate responses through vector similarity: finding statistically likely associations from training data. When given "teacher," the model maps to nearby concepts in semantic space: "classroom," "student," "education."</p>
+                    <p class="small">But what happens when we constrain these associations through game rules? Can we force semantic breakdown by limiting the model's ability to select from its most probable outputs?</p>
+                    <canvas id="vectorCanvas" style="width: 100%; height: 300px; margin-top: 20px;"></canvas>
+                </section>
+
+                <section class="section-demo">
+                    <h2>Exquisite Corpse system prompt</h2>
+                    <p class="small" style="font-style: italic; color: #aaa;">"You are participating in a game of Exquisite Corpse. Respond only to the user's most recent word. Reply with exactly one word per turn, with no punctuation or commentary, and label your response in sequence (Turn 2, Turn 3, etc.). Continue this pattern until Turn 20. When that occurs, stop producing numbered turns and compose a short poem using only the words that appeared in this conversation: nothing added, removed, or borrowed from elsewhere. Arrange them with line breaks and spacing to create a cohesive poem, then ask if the user would like a close reading of it."</p>
+                    <p><a href="https://openwebui.cuny.qzz.io/" target="_blank">https://openwebui.cuny.qzz.io/</a></p>
+                </section>
             </section>
 
             <!-- Critical Design Activity -->
@@ -331,7 +339,7 @@
                 <section>
                     <h2>Critical design activity</h2>
                     <div class="timing">15 min</div>
-                    <p>Design a game to reveal AI limitations using 2-3 types of playful interactions</p>
+                    <p><a href="https://docs.google.com/document/d/13f83FAj-0v6dI5FWJlD8kGLrNdAlktodILSLNyY5-AU/edit?usp=sharing" target="_blank">Use this worksheet</a> to design a game that reveals AI limitations using 2-3 types of playful interactions</p>
                     <p class="small">Choose 2-3 game formats that might be interesting to combine or explore:</p>
                     <div class="two-column">
                         <ul class="checkbox-list">
@@ -345,7 +353,6 @@
                         <ul class="checkbox-list">
                             <li>Chess/Game Annotation</li>
                             <li>Role Play/Improv</li>
-                            <li>Storytelling Chains</li>
                             <li>Debate/Argument</li>
                             <li>Mad Libs</li>
                             <li>Other: _______</li>
@@ -361,23 +368,18 @@
                         <li>Logic inconsistency/reasoning failures</li>
                         <li>Sycophancy (excessive agreement)</li>
                         <li>Instruction following failures</li>
-                        <li>Knowledge cutoff/temporal awareness</li>
+                        <li>Semantic breakdown</li>
                         <li>Other: _______</li>
                     </ul>
-                    <p class="small" style="margin-top: 20px;"><strong>Example: Sycophancy</strong> — Play "Two Truths and a Lie" but mark the truth as the "lie." AI often agrees rather than challenges incorrect assumptions.</p>
+                    <p class="small" style="margin-top: 20px;"><strong>Example: Sycophancy</strong> - Tell the AI an obviously false "fact" and ask it to explain why it's true. AI often agrees with incorrect user statements rather than challenging them.</p>
                 </section>
 
                 <section class="section-activity">
                     <h2>Craft your prompts</h2>
                     <p class="small"><strong>System prompt:</strong> Configure the AI's behavior and constraints</p>
-                    <p class="small" style="margin-left: 40px; font-style: italic; color: #aaa;">Example: "You are playing word association. When I say a word, respond with the statistically least common association. Each response must incorporate elements from all previous words in the chain. Avoid obvious connections. Reply with only the associated word or short phrase, no explanations."</p>
+                    <p class="small" style="margin-left: 40px; font-style: italic; color: #aaa;">Example: "We're playing Mad Libs. I'll give you a sentence with blanks labeled with parts of speech. For each blank, provide two options: (1) a probable word that fits the context, and (2) a statistically improbable word that still matches the part of speech but disrupts semantic coherence. Label them clearly."</p>
                     <p class="small"><strong>User prompt:</strong> Your first message to start the game</p>
-                    <p class="small" style="margin-left: 40px; font-style: italic; color: #aaa;">Example: "Dog"</p>
-                    <p class="small"><strong>Optional settings:</strong></p>
-                    <ul class="small">
-                        <li><strong>Temperature:</strong> Higher = more creative/random (0.0-1.5)</li>
-                        <li><strong>Max tokens:</strong> Limits response length (50-1000)</li>
-                    </ul>
+                    <p class="small" style="margin-left: 40px; font-style: italic; color: #aaa;">Example: "The [adjective] teacher walked into the [noun] and began to [verb]."</p>
                 </section>
 
                 <section class="section-activity">
@@ -392,9 +394,10 @@
             <section class="section-playtest">
                 <h2>Shareback and playtest</h2>
                 <div class="timing">15 min</div>
-                <p class="small">Navigate to the Open WebUI demo site and optionally sign up: <a href="https://openwebui.cuny.qzz.io/" target="_blank">https://openwebui.cuny.qzz.io/</a></p>
+                <p class="small">Navigate to the Open WebUI demo site and sign up: <a href="https://openwebui.cuny.qzz.io/" target="_blank">https://openwebui.cuny.qzz.io/</a></p>
                 <p class="small">Test your game design:</p>
                 <ul class="small">
+                    <li>Select a model from the dropdown menu at the top</li>
                     <li>Click the configuration icon to open the settings panel</li>
                     <li>Input your system prompt in the "System Prompt" field</li>
                     <li>Adjust optional settings (temperature, max tokens) if desired</li>
