@@ -8,22 +8,26 @@ function initVectorViz() {
     let phase = 0;
     let startTime = Date.now();
 
-    // Word sets with positions
+    // Word sets with positions - demonstrating cosine similarity in semantic space
+    // All vectors radiate from center; angle between vectors shows semantic similarity
     const words = [
         [
-            { text: 'king', x: 0.5, y: 0.5, size: 18, color: '#42affa' },
-            { text: 'queen', x: 0.3, y: 0.3, size: 14, color: '#4ecdc4' },
-            { text: 'crown', x: 0.7, y: 0.4, size: 14, color: '#4ecdc4' }
+            // High cosine similarity (~0.95): very small angles between vectors
+            { text: 'teacher', x: 0.5, y: 0.5, size: 18, color: '#42affa' },
+            { text: 'classroom', x: 0.82, y: 0.54, size: 14, color: '#4ecdc4' },
+            { text: 'student', x: 0.84, y: 0.46, size: 14, color: '#4ecdc4' }
         ],
         [
-            { text: 'king', x: 0.5, y: 0.5, size: 18, color: '#42affa' },
-            { text: 'chess', x: 0.4, y: 0.3, size: 14, color: '#ffeaa7' },
-            { text: 'board', x: 0.6, y: 0.3, size: 14, color: '#ffeaa7' }
+            // Medium cosine similarity (~0.65): moderate angles between vectors
+            { text: 'teacher', x: 0.5, y: 0.5, size: 18, color: '#42affa' },
+            { text: 'guide', x: 0.85, y: 0.72, size: 14, color: '#ffeaa7' },
+            { text: 'mentor', x: 0.85, y: 0.28, size: 14, color: '#ffeaa7' }
         ],
         [
-            { text: 'king', x: 0.5, y: 0.5, size: 18, color: '#42affa' },
-            { text: 'purple', x: 0.2, y: 0.7, size: 14, color: '#ff6b6b' },
-            { text: 'Tuesday', x: 0.8, y: 0.7, size: 14, color: '#ff6b6b' }
+            // Low cosine similarity (~0.1): near-orthogonal or opposing vectors
+            { text: 'teacher', x: 0.5, y: 0.5, size: 18, color: '#42affa' },
+            { text: 'turbine', x: 0.54, y: 0.88, size: 14, color: '#ff6b6b' },
+            { text: 'kelp', x: 0.12, y: 0.46, size: 14, color: '#ff6b6b' }
         ]
     ];
 
@@ -40,7 +44,7 @@ function initVectorViz() {
 
     function draw() {
         const elapsed = (Date.now() - startTime) / 1000;
-        if (elapsed > 3) {
+        if (elapsed > 10) {
             phase = (phase + 1) % 3;
             startTime = Date.now();
         }
